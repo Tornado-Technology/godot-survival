@@ -36,46 +36,4 @@ public partial class EntityManager : Node2D
 	{
 		return Entities.OfType<T>().ToList();
 	}
-
-	public override void _Ready()
-	{
-		base._Ready();
-
-		SpawnEntity(new PlayerEntity());
-
-		foreach (var entity in Entities)
-		{
-			entity.Initialize();
-		}
-	}
-
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
-
-		foreach (var entity in Entities)
-		{
-			entity.Update(delta);
-		}
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		base._PhysicsProcess(delta);
-
-		foreach (var entity in Entities)
-		{
-			entity.PhysicsUpdate(delta);
-		}
-	}
-
-	public override void _Input(InputEvent @event)
-	{
-		base._Input(@event);
-
-		foreach (var entity in Entities)
-		{
-			entity.Input(@event);
-		}
-	}
 }

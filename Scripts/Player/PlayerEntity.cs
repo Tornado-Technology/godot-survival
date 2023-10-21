@@ -3,13 +3,16 @@ using Survival.Scripts.Entities;
 
 namespace Survival.Scripts.Player;
 
-public class PlayerEntity : Entity
+public partial class PlayerEntity : Entity
 {
-	public override void Initialize()
+	public override void _Ready()
 	{
 		AddComponent(new InputComponent());
-		AddComponent(new InputMoveComponent());
+		AddComponent(new CharacterAnimationSpritesComponent());
+		AddComponent(new CharacterAnimatorComponent());
+		AddComponent(new MoveComponent());
+		AddComponent(new DamagableComponent());
 
-		base.Initialize();
+		base._Ready();
 	}
 }

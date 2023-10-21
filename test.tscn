@@ -1,8 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl3iakr4ysc4l"]
+[gd_scene load_steps=6 format=3 uid="uid://dl3iakr4ysc4l"]
 
-[ext_resource type="Script" path="res://Scripts/DependencyRegistrationNode.cs" id="1_xlp31"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerEntity.cs" id="1_rt3b8"]
+[ext_resource type="SpriteFrames" uid="uid://bpaia7eu7uux0" path="res://test.tres" id="2_2eney"]
+[ext_resource type="SpriteFrames" uid="uid://dpnw3ox7p5q7l" path="res://Assets/SpriteSheets/horns_1.tres" id="3_0bhb2"]
+[ext_resource type="SpriteFrames" uid="uid://b0rtlxsaovugh" path="res://Assets/SpriteSheets/grills.tres" id="3_55aug"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j1l0v"]
 
 [node name="Main" type="Node2D"]
 
-[node name="DependencyRegistration" type="Node2D" parent="."]
-script = ExtResource("1_xlp31")
+[node name="Player" type="Node2D" parent="."]
+scale = Vector2(0.999682, 0.987428)
+script = ExtResource("1_rt3b8")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="Player"]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Player/CharacterBody"]
+self_modulate = Color(0.662745, 0.690196, 0.419608, 1)
+texture_filter = 1
+sprite_frames = ExtResource("2_2eney")
+animation = &"walkDown"
+
+[node name="Ears" type="AnimatedSprite2D" parent="Player/CharacterBody/AnimatedSprite"]
+self_modulate = Color(1, 0, 0.388235, 1)
+sprite_frames = ExtResource("3_55aug")
+animation = &"walkDown"
+
+[node name="Horns" type="AnimatedSprite2D" parent="Player/CharacterBody/AnimatedSprite"]
+sprite_frames = ExtResource("3_0bhb2")
+animation = &"walkDown"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Player/CharacterBody"]
+shape = SubResource("CapsuleShape2D_j1l0v")
+
+[node name="Camera" type="Camera2D" parent="Player/CharacterBody"]
+scale = Vector2(0.957934, 1.18778)
+zoom = Vector2(2, 2)

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Survival.Scripts.Entities;
 
-public abstract class Entity : IComponentResolver, IInitializable, IUpdatable, IPhysicsUpdatable, IInputable
+public abstract partial class Entity : Node2D, IComponentResolver
 {
 	public EntityUid Uid;
 
@@ -22,15 +22,17 @@ public abstract class Entity : IComponentResolver, IInitializable, IUpdatable, I
 		Uid = uid;
 	}
 
-	public virtual void Initialize()
+	public override void _Ready()
 	{
+		base._Ready();
+
 		foreach (var component in _components)
 		{
 			component.Initialize();
 		}
 	}
 
-	public virtual void Update(double delta)
+	public override void _Process(double delta)
 	{
 		foreach (var component in _components)
 		{
@@ -38,7 +40,7 @@ public abstract class Entity : IComponentResolver, IInitializable, IUpdatable, I
 		}
 	}
 	
-	public virtual void PhysicsUpdate(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		foreach (var component in _components)
 		{
@@ -46,7 +48,7 @@ public abstract class Entity : IComponentResolver, IInitializable, IUpdatable, I
 		}
 	}
 
-	public virtual void Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		foreach (var component in _components)
 		{

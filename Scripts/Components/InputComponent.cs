@@ -10,6 +10,6 @@ public class InputComponent : Component
 	{
 		base.Update(delta);
 
-		//Direction = Godot.Input.GetVector("left", "right", "up", "down").Normalized();
+		Direction = Godot.Input.GetVector("left", "right", "up", "down").Normalized();
 	}
 }
